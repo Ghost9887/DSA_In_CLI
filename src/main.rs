@@ -11,7 +11,7 @@ fn main() {
 
 }
 
-fn parse_args(args: Vec<String>) {
+fn parse_args(mut args: Vec<String>) {
 
     println!("{:?}", args);
     
@@ -26,16 +26,17 @@ fn parse_args(args: Vec<String>) {
         "dsa" => {
             print_usage();
             process::exit(1);
-        }
+        },
         "bubble_sort" => {
+            args.remove(0);
             if let Err(e) = run_bubble_sort(args) {
                 eprintln!("{e}");
                 process::exit(1);
             }
-        }
+        },
         _ => {
             eprintln!("Invalid argument type 'dsa' for help");
-        }
+        },
     }
 
 }
