@@ -13,8 +13,6 @@ fn main() {
 
 fn parse_args(mut args: Vec<String>) {
 
-    println!("{:?}", args);
-    
     if args.len() < 1 {
         println!("Invalid number of args type 'dsa' for help ");
         process::exit(1);

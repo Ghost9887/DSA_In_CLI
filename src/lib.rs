@@ -39,12 +39,41 @@ pub fn run_bubble_sort(args: Vec<String>) -> Result<(), Box<dyn Error>> {
 
     if default_input {
 
+        let mut default_arr = vec![30, 21, 6, 78, 92, 14, 50, 33, 68];
+        let mut moved = true;
+        let mut step = 1;
+        while moved {
+            moved = false;
+            for i in 0..default_arr.len() - 1{
+
+                if i + 1 > default_arr.len() - 1 {
+                    break;
+                }
+                
+                let a = default_arr[i];
+                let b = default_arr[i + 1];
+
+                if a > b {
+                    default_arr[i] = b;
+                    default_arr[i + 1] = a;
+                    moved = true;
+                }            
+            }
+            if show_steps {
+                println!("{}:", step);
+                print!("");
+                println!("{:?}\n", default_arr);
+                //clear screen
+                //print!("\x1B[2J\x1B[1;1H");
+                step += 1;
+            }
+        }
+        println!("Result: {:?}", default_arr);
+        return Ok(());
     }
 
     else if custom_input {
 
     }
-
-    println!("Running bubble sort");
     Ok(())
 }
