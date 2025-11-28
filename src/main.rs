@@ -1,4 +1,5 @@
-use std::{env};
+use std::{env, process};
+use dsa_in_cli::{run_bubble_sort};
 
 fn main() {
 
@@ -11,5 +12,48 @@ fn main() {
 }
 
 fn parse_args(args: Vec<String>) {
+
     println!("{:?}", args);
+    
+    if args.len() < 1 {
+        println!("Invalid number of args type 'dsa' for help ");
+        process::exit(1);
+    }
+
+    let algorithm_arg: &str = &args[0];
+
+    match algorithm_arg {
+        "dsa" => {
+            print_usage();
+            process::exit(1);
+        }
+        "bubble_sort" => {
+            if let Err(e) = run_bubble_sort(args) {
+                eprintln!("{e}");
+                process::exit(1);
+            }
+        }
+        _ => {
+            eprintln!("Invalid argument type 'dsa' for help");
+        }
+    }
+
+}
+
+fn print_usage() {
+    println!("\
+Usage: 
+[algorithm_name] [args]
+
+Algorithms:
+bubble_sort => 
+    usage:
+
+    bubble_sort [arg1] ...
+
+    arguments:
+    -i => custom input : usage 'bubble_sort -i [3, 1, 50, 27, 89]'
+    -d => defualt input : usage 'bubble_sort -d' 
+    -s => shows steps it took : usage 'bubble_sort -d -s'
+");
 }
